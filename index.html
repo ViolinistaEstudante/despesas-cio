@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard de Despesas</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="img/logotipo.png" type="image/png">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <img src="img/logotipo.png" class="logo" alt="Logo">
+    
+    <div class="search-box">
+      <input id="search" type="text" placeholder="Pesquisar...">
+      <button>Buscar</button>
+    </div>
+  </header>
+
+  <marquee id="marqueeMsg" behavior="scroll" direction="left">
+    Carregando solicitações...
+  </marquee>
+
+  <div class="cards" id="categorias"></div>
+
+  <script src="js/index.js"></script>
+</body>
+</html>
