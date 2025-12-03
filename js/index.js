@@ -73,3 +73,6 @@ const nomeImg = gerarNomeImagem(item.tipoDespesa);
 const caminhoImg = `assets/img/${nomeImg}`;
 
 
+function dashboard() {
+    window.location.href = "dashboard.html"; 
+}

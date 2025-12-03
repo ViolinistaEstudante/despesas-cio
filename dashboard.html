@@ -1,0 +1,33 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard CIO</title>
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="icon" href="img/logotipo.png" type="image/png" />
+</head>
+<body class="container">
+  <header>
+    <h1>Dashboard - CIO</h1>
+    <button id="btnPDF" class="btn-pdf">Baixar Dashboard em PDF</button>
+    <button class="btn-pdf" onclick="voltar()">Voltar</button>
+  </header>
+  <div id="totalMensal" class="card-total-mensal"></div>
+
+  <h2>Soma por Despesas</h2>
+  <table id="tabelaDespesas"></table>
+
+  <h2>Despesas Mais Gastas - Percentual</h2>
+  <canvas id="graficoPizza"></canvas>
+
+  <h2>Despesas Mais Gastas - Filtro de Organizações</h2>
+  <canvas id="graficoBarras"></canvas>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
