@@ -19,23 +19,37 @@ function getValor(celula) {
 }
 
 carregarDados().then(linhas => {
-  // TOTAL MENSAL (A5)
-  document.getElementById("totalMensal").innerHTML = `Total Mensal: ${linhas[4][0]}`;
 
-  // SOMA POR DESPESAS (D6:F13)
+  // ================= TOTAL MENSAL =================
+  // Valor em A5
+  document.getElementById("totalMensal").innerHTML =
+    `Total Mensal: ${linhas[4][0]}`;
+
+  // ================= SOMA POR DESPESAS =================
+  // Valores: D6:F15
   let tabela = document.getElementById("tabelaDespesas");
-  tabela.innerHTML = `<tr><th>DESPESAS:</th><th>QNTD. DE OCORRÊNCIAS</th><th>VALOR (R$)</th></tr>`;
-  for (let i = 5; i <= 12; i++) {
-    tabela.innerHTML += `<tr>
-      <td>${linhas[i][3]}</td>
-      <td>${linhas[i][4]}</td>
-      <td> ${linhas[i][5]}</td>
-    </tr>`;
+  tabela.innerHTML = `
+    <tr>
+      <th>DESPESAS</th>
+      <th>QNTD. DE OCORRÊNCIAS</th>
+      <th>VALOR (R$)</th>
+    </tr>
+  `;
+
+  for (let i = 5; i <= 14; i++) { // linhas 6 a 15
+    tabela.innerHTML += `
+      <tr>
+        <td>${linhas[i][3]}</td>
+        <td>${linhas[i][4]}</td>
+        <td>${linhas[i][5]}</td>
+      </tr>
+    `;
   }
 
-  // GRÁFICO PIZZA 3D (A9:B16)
-  const despesasPizza = linhas.slice(8, 16).map(l => l[0]);
-  const percentPizza = linhas.slice(8, 16).map(l => getValor(l[1]));
+  // ================= GRÁFICO PIZZA =================
+  // Valores: A8:B18
+  const despesasPizza = linhas.slice(8, 18).map(l => l[0]);
+  const percentPizza = linhas.slice(8, 18).map(l => getValor(l[1]));
 
   new Chart(document.getElementById("graficoPizza"), {
     type: "pie",
@@ -45,9 +59,10 @@ carregarDados().then(linhas => {
     }
   });
 
-  // GRÁFICO BARRAS (D17:E24)
-  const despesasBar = linhas.slice(16, 24).map(l => l[3]);
-  const valoresBar = linhas.slice(16, 24).map(l => getValor(l[4]));
+  // ================= GRÁFICO DE BARRAS =================
+  // Valores: D19:E28
+  const despesasBar = linhas.slice(18, 28).map(l => l[3]);
+  const valoresBar = linhas.slice(18, 28).map(l => getValor(l[4]));
 
   new Chart(document.getElementById("graficoBarras"), {
     type: "bar",
@@ -55,9 +70,14 @@ carregarDados().then(linhas => {
       labels: despesasBar,
       datasets: [{ data: valoresBar }]
     },
-    options: { scales: { y: { beginAtZero: true } } }
+    options: {
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
   });
 });
+
 
 // === BOTÃO PARA GERAR PDF DO DASHBOARD === //
 document.getElementById("btnPDF").addEventListener("click", async () => {
