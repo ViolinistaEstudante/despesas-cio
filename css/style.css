@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  font-family: "Saira";
+* {
+  box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+  background: #f4f4f4;
+  font-family: "Saira";
+  transition: padding-left 0.3s;
+}
+
+/* HEADER */
 header {
   background: #012c57;
   padding: 15px;
@@ -14,16 +19,20 @@ header {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 900;
 }
 
 .logo {
-  height: 60px;
+  height: 80px;
+  cursor: pointer;
 }
 
+/* SEARCH */
 .search-box {
   display: flex;
   gap: 10px;
-  font-family: "Saira";
 }
 
 .search-box input {
@@ -31,7 +40,6 @@ header {
   border: 1px solid #ccc;
   border-radius: 6px;
   width: 180px;
-  font-family: "Saira";
 }
 
 button {
@@ -41,38 +49,74 @@ button {
   background: #1976d2;
   color: white;
   cursor: pointer;
-  font-family: "Saira";
 }
 
 button:hover {
   background: #0e5cab;
 }
 
+/* MARQUEE */
 marquee {
   background: #1976d2;
   color: white;
   padding: 10px;
   font-weight: bold;
-  font-family: "Saira";
 }
 
-marquee a {
-  color: #ffffff;
+/* SIDEBAR */
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: -240px;
+  width: 240px;
+  height: 100%;
+  background: #012c57;
+  padding-top: 90px;
+  transition: 0.3s ease;
+  z-index: 1000;
+}
+
+#sidebar.active {
+  left: 0;
+}
+
+#sidebar nav {
+  display: flex;
+  flex-direction: column;
+}
+
+#sidebar nav a {
+  color: white;
   text-decoration: none;
-  font-weight: 600;
-  font-family: "Saira";
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
-marquee a:hover {
-  text-decoration: underline;
+#sidebar nav a i {
+  font-size: 18px;
+  min-width: 22px;
 }
 
+#sidebar nav a:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* EMPURRA CONTEÚDO */
+body.sidebar-open {
+  padding-left: 240px;
+}
+
+/* CARDS */
 .cards {
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
-  font-family: "Saira";
 }
 
 .card {
@@ -80,7 +124,7 @@ marquee a:hover {
   padding: 15px;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  font-family: "Saira";
+  transition: 0.3s;
 }
 
 .card img {
@@ -96,28 +140,6 @@ marquee a:hover {
   border-radius: 6px;
   font-size: 12px;
   margin-top: 8px;
-  font-family: "Saira";
-}
-
-.card h3 {
-  margin: 10px 0 6px;
-  font-family: "Saira";
-}
-
-.card p {
-  color: #666;
-  font-family: "Saira";
-}
-
-.card a {
-  margin-top: 10px;
-  display: inline-block;
-  background: #1976d2;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-family: "Saira";
 }
 
 .card:hover {
@@ -126,7 +148,54 @@ marquee a:hover {
   cursor: pointer;
 }
 
-.card a:hover {
-  background: #0e5cab;
+/* ITEM COM SUBMENU */
+.menu-item {
+  display: flex;
+  flex-direction: column;
 }
 
+/* CABEÇALHO DO MENU */
+.menu-header {
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.menu-header:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.menu-header .arrow {
+  margin-left: auto;
+  transition: transform 0.3s;
+}
+
+/* SUBMENU */
+.submenu {
+  display: none;
+  flex-direction: column;
+  background: #023b73;
+}
+
+.submenu a {
+  color: white;
+  padding: 12px 40px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.submenu a:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* ATIVO */
+.menu-item.active .submenu {
+  display: flex;
+}
+
+.menu-item.active .arrow {
+  transform: rotate(180deg);
+}

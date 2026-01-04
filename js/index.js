@@ -1,10 +1,18 @@
 const API = "https://script.google.com/macros/s/AKfycbxqZ-T43eqzijcVYaOTDjXGQAWIVSwLaKVruhOnYyVSXKr7XFRE0qG2O5x5C2ZVhHpdLA/exec";
 
+/* SIDEBAR */
+function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("active");
+  document.body.classList.toggle("sidebar-open");
+}
+
+/* CATEGORIAS */
 async function carregarCategorias() {
   const res = await fetch(API + "?tipo=categorias");
   const categorias = await res.json();
-
   const container = document.getElementById("categorias");
+
+  container.innerHTML = "";
 
   categorias.forEach(cat => {
     container.innerHTML += `
@@ -23,56 +31,44 @@ function abrirCategoria(tipo) {
 
 carregarCategorias();
 
+/* PESQUISA */
 document.getElementById("search").addEventListener("input", () => {
   const txt = document.getElementById("search").value.toLowerCase();
-  const cards = document.querySelectorAll(".card");
-
-  cards.forEach(c => {
+  document.querySelectorAll(".card").forEach(c => {
     c.style.display = c.innerText.toLowerCase().includes(txt) ? "block" : "none";
   });
 });
 
+/* MARQUEE */
 async function carregarMarquee() {
-    const marquee = document.getElementById("marqueeMsg");
+  const marquee = document.getElementById("marqueeMsg");
 
-    try {
-        const resposta = await fetch("https://script.google.com/macros/s/AKfycbxqZ-T43eqzijcVYaOTDjXGQAWIVSwLaKVruhOnYyVSXKr7XFRE0qG2O5x5C2ZVhHpdLA/exec");
-        const dados = await resposta.json();
+  try {
+    const resposta = await fetch(API);
+    const dados = await resposta.json();
 
-        // supondo que seu JSON retorna algo como:
-        // [{titulo: "...", descricao:"..."}, {...}]
-        
-        if (dados && dados.length > 0) {
-            // gera um texto com os títulos
-            const lista = dados.map(item => item.titulo).join(" • ");
-
-            marquee.textContent = lista;
-        } else {
-            marquee.textContent = "Nenhum tópico encontrado...";
-        }
-
-    } catch (erro) {
-        marquee.textContent = "Erro ao carregar tópicos...";
-        console.error("Erro no marquee:", erro);
-    }
+    marquee.textContent = dados.length
+      ? dados.map(i => i.titulo).join(" • ")
+      : "Nenhum tópico encontrado...";
+  } catch {
+    marquee.textContent = "Erro ao carregar tópicos...";
+  }
 }
 
-// inicia
 carregarMarquee();
 
-function gerarNomeImagem(tipoDespesa) {
-  return tipoDespesa
-    .trim()
-    .toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // remove acentos
-    .replace(/[/]/g, "")                              // remove barra
-    .replace(/\s+/g, "-") + ".png";                   // troca espaço por -
+/* DASHBOARD */
+function dashboard() {
+  window.location.href = "dashboard.html";
 }
 
-const nomeImg = gerarNomeImagem(item.tipoDespesa);
-const caminhoImg = `assets/img/${nomeImg}`;
+function toggleSubmenu(element) {
+  const menuItem = element.parentElement;
 
+  // fecha outros submenus (opcional)
+  document.querySelectorAll(".menu-item").forEach(item => {
+    if (item !== menuItem) item.classList.remove("active");
+  });
 
-function dashboard() {
-    window.location.href = "dashboard.html"; 
+  menuItem.classList.toggle("active");
 }
