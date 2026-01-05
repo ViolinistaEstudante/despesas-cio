@@ -15,29 +15,117 @@
 
   <!-- SIDEBAR -->
   <aside id="sidebar">
-    <nav>
+<nav>
 
-    <!-- ITEM SIMPLES -->
-    <a onclick="dashboard()">
-      <i class="fa-solid fa-chart-line"></i>
-      <span>Dashboard</span>
-    </a>
+  <!-- DASHBOARD -->
+  <a onclick="dashboard()">
+    <i class="fa-solid fa-chart-line"></i>
+    <span>Dashboard</span>
+  </a>
 
-    <!-- ITEM COM SUBMENU -->
-    <div class="menu-item">
-      <div class="menu-header" onclick="toggleSubmenu(this)">
-        <i class="fa-solid fa-file-invoice-dollar"></i>
-        <span>Despesas</span>
-        <i class="fa-solid fa-chevron-down arrow"></i>
-      </div>
-
-      <div class="submenu">
-        <a href="https://drive.google.com/file/d/16Tmtbyt8aLAiSi8UwFAXFEmsyc2sSAac/view?usp=sharing">2025</a>
-        <a href="dashboard.html">2026</a>
-      </div>
+  <!-- DESPESAS -->
+  <div class="menu-item">
+    <div class="menu-header" onclick="toggleSubmenu(this)">
+      <i class="fa-solid fa-sack-dollar"></i>
+      <span>Despesas</span>
+      <i class="fa-solid fa-chevron-down arrow"></i>
     </div>
 
-  </nav>
+    <div class="submenu">
+      <a href="https://drive.google.com/file/d/1yhDOb1O6ufWiBkxUiSD0tEBM81AcRrsZ/view?usp=drive_link" target="_blank">
+        <i class="fa-solid fa-folder"></i> 2025
+      </a>
+
+      <a href="dashboard.html">
+        <i class="fa-solid fa-folder"></i> 2026
+      </a>
+    </div>
+  </div>
+
+  <!-- DESPESAS MENSAIS -->
+  <div class="menu-item">
+    <div class="menu-header" onclick="toggleSubmenu(this)">
+      <i class="fa-solid fa-calendar-days"></i>
+      <span>Despesas Mensais</span>
+      <i class="fa-solid fa-chevron-down arrow"></i>
+    </div>
+
+    <div class="submenu">
+
+      <!-- 2025 -->
+      <div class="submenu-item">
+        <div class="submenu-header" onclick="toggleSubSubmenu(this)">
+          <i class="fa-solid fa-folder"></i>
+          <span>2025</span>
+          <i class="fa-solid fa-chevron-down arrow"></i>
+        </div>
+
+        <div class="subsubmenu">
+          <a href="https://drive.google.com/file/d/1yhDOb1O6ufWiBkxUiSD0tEBM81AcRrsZ/view?usp=drive_link" target="_blank">
+            <i class="fa-solid fa-calendar"></i> Nov/Dez
+          </a>
+        </div>
+      </div>
+
+      <!-- 2026 -->
+      <div class="submenu-item">
+        <div class="submenu-header" onclick="toggleSubSubmenu(this)">
+          <i class="fa-solid fa-folder"></i>
+          <span>2026</span>
+          <i class="fa-solid fa-chevron-down arrow"></i>
+        </div>
+
+        <div class="subsubmenu">
+          <a href="#">
+            <i class="fa-solid fa-calendar"></i> Jan
+          </a>
+          <a href="#">
+            <i class="fa-solid fa-calendar"></i> Fev
+          </a>
+          <a href="#">
+            <i class="fa-solid fa-calendar"></i> Mar
+          </a>
+          <a href="#">
+            <i class="fa-solid fa-calendar"></i> Abr
+          </a>
+          <a href="#">
+            <i class="fa-solid fa-calendar"></i> Mai
+          </a>
+          <a href="#">
+            <i class="fa-solid fa-calendar"></i> Jun
+          </a>
+          <a href="#">
+            <i class="fa-solid fa-calendar"></i> Jul
+          </a>
+          <a href="#">
+            <i class="fa-solid fa-calendar"></i> Ago
+          </a>
+          <a href="#">
+            <i class="fa-solid fa-calendar"></i> Set
+          </a>
+          <a href="#">
+            <i class="fa-solid fa-calendar"></i> Out
+          </a>
+          <a href="#">
+            <i class="fa-solid fa-calendar"></i> Nov
+          </a>
+          <a href="#">
+            <i class="fa-solid fa-calendar"></i> Dez
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PLANILHA DE CONTROLE -->
+  <a href="https://docs.google.com/spreadsheets/d/14xO5yA8ho4Fzz-IBaGaYnogcpLwG0IkzY2L3BeMkBIQ/edit?usp=sharing" target="_blank">
+    <i class="fa-solid fa-table"></i>
+    <span>Planilha de Controle</span>
+  </a>
+
+</nav>
+
   </aside>
 
   <!-- HEADER -->
