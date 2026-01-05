@@ -65,10 +65,22 @@ function dashboard() {
 function toggleSubmenu(element) {
   const menuItem = element.parentElement;
 
-  // fecha outros submenus (opcional)
   document.querySelectorAll(".menu-item").forEach(item => {
     if (item !== menuItem) item.classList.remove("active");
   });
 
   menuItem.classList.toggle("active");
 }
+
+function toggleSubSubmenu(element) {
+  const submenuItem = element.parentElement;
+
+  element.closest(".submenu")
+    .querySelectorAll(".submenu-item")
+    .forEach(item => {
+      if (item !== submenuItem) item.classList.remove("active");
+    });
+
+  submenuItem.classList.toggle("active");
+}
+
