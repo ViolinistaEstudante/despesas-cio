@@ -69,11 +69,32 @@ marquee {
   top: 0;
   left: -240px;
   width: 240px;
-  height: 100%;
+  height: 100vh; /* garante altura da tela */
   background: #012c57;
   padding-top: 90px;
   transition: 0.3s ease;
   z-index: 1000;
+
+  overflow-y: auto;   /* 🔥 ATIVA O SCROLL */
+  overflow-x: hidden; /* evita scroll horizontal */
+}
+
+/* SCROLLBAR SIDEBAR */
+#sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+#sidebar::-webkit-scrollbar-track {
+  background: #012c57;
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+  background: #1976d2;
+  border-radius: 6px;
+}
+
+#sidebar::-webkit-scrollbar-thumb:hover {
+  background: #4da3ff;
 }
 
 #sidebar.active {
@@ -198,4 +219,67 @@ body.sidebar-open {
 
 .menu-item.active .arrow {
   transform: rotate(180deg);
+}
+
+/* SUBMENU ITEM */
+.submenu-item {
+  display: flex;
+  flex-direction: column;
+}
+
+/* CABEÇALHO DO SUB-SUBMENU */
+.submenu-header {
+  color: white;
+  padding: 12px 40px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.submenu-header:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.submenu-header .arrow {
+  margin-left: auto;
+  transition: transform 0.3s;
+}
+
+/* SUB-SUBMENU */
+.subsubmenu {
+  display: none;
+  flex-direction: column;
+  background: #034a8f;
+}
+
+.subsubmenu a {
+  color: white;
+  padding: 10px 60px;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.subsubmenu a:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* ATIVO */
+.submenu-item.active .subsubmenu {
+  display: flex;
+}
+
+.submenu-item.active .submenu-header .arrow {
+  transform: rotate(180deg);
+}
+
+.submenu a i,
+.submenu-header i {
+  min-width: 18px;
+  font-size: 14px;
+}
+
+.subsubmenu a i {
+  min-width: 16px;
+  font-size: 13px;
 }
